@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Infrastructure\Itmo.Dev.Asap.Auth.Identity\Itmo.Dev.Asap.Auth.Identity.csproj" />
+      <ProjectReference Include="..\Itmo.Dev.Asap.Auth.Application.Abstractions\Itmo.Dev.Asap.Auth.Application.Abstractions.csproj" />
+      <ProjectReference Include="..\Itmo.Dev.Asap.Auth.Application.Contracts\Itmo.Dev.Asap.Auth.Application.Contracts.csproj" />
+      <ProjectReference Include="..\Itmo.Dev.Asap.Auth.Application.Mapping\Itmo.Dev.Asap.Auth.Application.Mapping.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" />
+      <PackageReference Include="Microsoft.Extensions.Options" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth.Presentation.Grpc"/>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth.Tests"/>
+    </ItemGroup>
+
+</Project>

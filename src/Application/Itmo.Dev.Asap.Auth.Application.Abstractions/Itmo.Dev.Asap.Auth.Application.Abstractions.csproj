@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\Itmo.Dev.Asap.Auth.Application.Dto\Itmo.Dev.Asap.Auth.Application.Dto.csproj" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <ItemGroup>
+        <PackageReference Include="MediatR.Contracts"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Itmo.Dev.Asap.Auth.Application.Dto\Itmo.Dev.Asap.Auth.Application.Dto.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth.Application.Handlers"/>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth.Presentation.Grpc"/>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth.Tests"/>
+        <InternalsVisibleTo Include="Itmo.Dev.Asap.Auth"/>
+    </ItemGroup>
+
+
+</Project>

@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <IsPackable>false</IsPackable>
+        <IsTestProject>true</IsTestProject>
+        <NoWarn>$(NoWarn);1701;1702;IL2121;CA1707;SA1633;SA1309;SA1101;SA1518;SA1502;CA1506</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Itmo.Dev.Platform.Testing"/>
+        <PackageReference Include="Microsoft.NET.Test.Sdk"/>
+        <PackageReference Include="Moq" />
+        <PackageReference Include="xunit"/>
+        <PackageReference Include="xunit.runner.visualstudio" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" PrivateAssets="all"/>
+        <PackageReference Include="coverlet.collector" IncludeAssets="runtime; build; native; contentfiles; analyzers; buildtransitive" PrivateAssets="all"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\src\Application\Itmo.Dev.Asap.Auth.Application.Abstractions\Itmo.Dev.Asap.Auth.Application.Abstractions.csproj"/>
+        <ProjectReference Include="..\..\src\Application\Itmo.Dev.Asap.Auth.Application.Contracts\Itmo.Dev.Asap.Auth.Application.Contracts.csproj" />
+        <ProjectReference Include="..\..\src\Application\Itmo.Dev.Asap.Auth.Application.Handlers\Itmo.Dev.Asap.Auth.Application.Handlers.csproj" />
+        <ProjectReference Include="..\..\src\Application\Itmo.Dev.Asap.Auth.Application\Itmo.Dev.Asap.Auth.Application.csproj" />
+    </ItemGroup>
+
+</Project>

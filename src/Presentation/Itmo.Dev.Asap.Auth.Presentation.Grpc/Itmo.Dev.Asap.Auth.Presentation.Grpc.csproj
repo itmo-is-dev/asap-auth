@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+        <PackageReference Include="Grpc.AspNetCore"/>
+        <PackageReference Include="Grpc.AspNetCore.Server.Reflection"/>
+        <PackageReference Include="MediatR"/>
+        <PackageReference Include="Riok.Mapperly"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Protobuf ProtoRoot="protos" Include="protos/**/*.proto" GrpcServices="Server"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Application\Itmo.Dev.Asap.Auth.Application.Abstractions\Itmo.Dev.Asap.Auth.Application.Abstractions.csproj" />
+      <ProjectReference Include="..\..\Application\Itmo.Dev.Asap.Auth.Application.Contracts\Itmo.Dev.Asap.Auth.Application.Contracts.csproj" />
+
+
+    </ItemGroup>
+
+
+
+
+
+
+
+</Project>

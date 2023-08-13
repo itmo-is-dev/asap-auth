@@ -1,0 +1,111 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{A3A187B9-C97F-4B65-B8D1-7C8C027E67F5}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.editorconfig = .editorconfig
+		Directory.Packages.props = Directory.Packages.props
+		Directory.Build.props = Directory.Build.props
+		nuget.config = nuget.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1975033E-3D27-47B2-B1F3-022107FD928B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{2622A371-C9F3-4D50-ACF9-A43D793F50FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{CE599DFA-06EE-4A8B-AEF3-96512550D07B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth", "src\Itmo.Dev.Asap.Auth\Itmo.Dev.Asap.Auth.csproj", "{4A14C816-6A3C-435C-84BD-8940B4906A4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application.Contracts", "src\Application\Itmo.Dev.Asap.Auth.Application.Contracts\Itmo.Dev.Asap.Auth.Application.Contracts.csproj", "{4B1690A0-DF89-44FA-9390-2BE08A068D22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application.Dto", "src\Application\Itmo.Dev.Asap.Auth.Application.Dto\Itmo.Dev.Asap.Auth.Application.Dto.csproj", "{B3FE61EC-9436-4F9E-83A6-38CE431F1C78}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{6967CBBF-E8EA-4579-B160-56E77A7BC412}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Identity", "src\Infrastructure\Itmo.Dev.Asap.Auth.Identity\Itmo.Dev.Asap.Auth.Identity.csproj", "{A5B3489C-878A-4E8B-B32F-410911FADE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application.Abstractions", "src\Application\Itmo.Dev.Asap.Auth.Application.Abstractions\Itmo.Dev.Asap.Auth.Application.Abstractions.csproj", "{23992058-D84A-4F84-9BA9-D905F6E27260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Presentation.Grpc", "src\Presentation\Itmo.Dev.Asap.Auth.Presentation.Grpc\Itmo.Dev.Asap.Auth.Presentation.Grpc.csproj", "{C87856B4-EE0A-4D02-BDCB-5E46464ECB67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application.Handlers", "src\Application\Itmo.Dev.Asap.Auth.Application.Handlers\Itmo.Dev.Asap.Auth.Application.Handlers.csproj", "{F4936B71-2F71-460F-A305-0635BC7E5EDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application.Mapping", "src\Application\Itmo.Dev.Asap.Auth.Application.Mapping\Itmo.Dev.Asap.Auth.Application.Mapping.csproj", "{D696987C-C2D6-4665-8418-584F3B7B047A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Application", "src\Application\Itmo.Dev.Asap.Auth.Application\Itmo.Dev.Asap.Auth.Application.csproj", "{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1BE7477B-A911-45D9-BD1A-0A05EE78032F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Itmo.Dev.Asap.Auth.Tests", "tests\Itmo.Dev.Asap.Auth.Tests\Itmo.Dev.Asap.Auth.Tests.csproj", "{81FBC461-771B-4FA6-8E7A-5938C1476F8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{B1616610-23A9-4C98-AF29-07746A642EB7}"
+	ProjectSection(SolutionItems) = preProject
+		docker\docker-compose.yaml = docker\docker-compose.yaml
+		docker\.env = docker\.env
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2622A371-C9F3-4D50-ACF9-A43D793F50FE} = {1975033E-3D27-47B2-B1F3-022107FD928B}
+		{CE599DFA-06EE-4A8B-AEF3-96512550D07B} = {1975033E-3D27-47B2-B1F3-022107FD928B}
+		{4A14C816-6A3C-435C-84BD-8940B4906A4C} = {1975033E-3D27-47B2-B1F3-022107FD928B}
+		{4B1690A0-DF89-44FA-9390-2BE08A068D22} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{B3FE61EC-9436-4F9E-83A6-38CE431F1C78} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{6967CBBF-E8EA-4579-B160-56E77A7BC412} = {1975033E-3D27-47B2-B1F3-022107FD928B}
+		{A5B3489C-878A-4E8B-B32F-410911FADE88} = {6967CBBF-E8EA-4579-B160-56E77A7BC412}
+		{23992058-D84A-4F84-9BA9-D905F6E27260} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{C87856B4-EE0A-4D02-BDCB-5E46464ECB67} = {CE599DFA-06EE-4A8B-AEF3-96512550D07B}
+		{F4936B71-2F71-460F-A305-0635BC7E5EDA} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{D696987C-C2D6-4665-8418-584F3B7B047A} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF} = {2622A371-C9F3-4D50-ACF9-A43D793F50FE}
+		{81FBC461-771B-4FA6-8E7A-5938C1476F8E} = {1BE7477B-A911-45D9-BD1A-0A05EE78032F}
+		{B1616610-23A9-4C98-AF29-07746A642EB7} = {A3A187B9-C97F-4B65-B8D1-7C8C027E67F5}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A14C816-6A3C-435C-84BD-8940B4906A4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A14C816-6A3C-435C-84BD-8940B4906A4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A14C816-6A3C-435C-84BD-8940B4906A4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A14C816-6A3C-435C-84BD-8940B4906A4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B1690A0-DF89-44FA-9390-2BE08A068D22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B1690A0-DF89-44FA-9390-2BE08A068D22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B1690A0-DF89-44FA-9390-2BE08A068D22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B1690A0-DF89-44FA-9390-2BE08A068D22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3FE61EC-9436-4F9E-83A6-38CE431F1C78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3FE61EC-9436-4F9E-83A6-38CE431F1C78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3FE61EC-9436-4F9E-83A6-38CE431F1C78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3FE61EC-9436-4F9E-83A6-38CE431F1C78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B3489C-878A-4E8B-B32F-410911FADE88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B3489C-878A-4E8B-B32F-410911FADE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B3489C-878A-4E8B-B32F-410911FADE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B3489C-878A-4E8B-B32F-410911FADE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23992058-D84A-4F84-9BA9-D905F6E27260}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23992058-D84A-4F84-9BA9-D905F6E27260}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23992058-D84A-4F84-9BA9-D905F6E27260}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23992058-D84A-4F84-9BA9-D905F6E27260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C87856B4-EE0A-4D02-BDCB-5E46464ECB67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C87856B4-EE0A-4D02-BDCB-5E46464ECB67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C87856B4-EE0A-4D02-BDCB-5E46464ECB67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C87856B4-EE0A-4D02-BDCB-5E46464ECB67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4936B71-2F71-460F-A305-0635BC7E5EDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4936B71-2F71-460F-A305-0635BC7E5EDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4936B71-2F71-460F-A305-0635BC7E5EDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4936B71-2F71-460F-A305-0635BC7E5EDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D696987C-C2D6-4665-8418-584F3B7B047A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D696987C-C2D6-4665-8418-584F3B7B047A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D696987C-C2D6-4665-8418-584F3B7B047A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D696987C-C2D6-4665-8418-584F3B7B047A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244E8BC0-328F-439D-A2E4-EE38C3C1D6CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81FBC461-771B-4FA6-8E7A-5938C1476F8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81FBC461-771B-4FA6-8E7A-5938C1476F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81FBC461-771B-4FA6-8E7A-5938C1476F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81FBC461-771B-4FA6-8E7A-5938C1476F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
