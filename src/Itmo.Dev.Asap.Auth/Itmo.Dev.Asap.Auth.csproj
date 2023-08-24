@@ -1,8 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+    <PropertyGroup>
+      <UserSecretsId>eedd5c49-cc11-45fc-bc64-229dfaad68de</UserSecretsId>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
         <PackageReference Include="Swashbuckle.AspNetCore"/>
+        <PackageReference Include="Itmo.Dev.Platform.Logging" />
+        <PackageReference Include="Itmo.Dev.Platform.YandexCloud" />
+        <PackageReference Include="Serilog.Sinks.Console" />
+        <PackageReference Include="Serilog.Sinks.File" />
     </ItemGroup>
 
     <ItemGroup>

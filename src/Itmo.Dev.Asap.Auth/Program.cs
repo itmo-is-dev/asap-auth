@@ -1,6 +1,7 @@
 #pragma warning disable CA1506
 
 using Itmo.Dev.Asap.Auth.Application.Abstractions.CurrentUsers;
+using Itmo.Dev.Asap.Auth.Application.Abstractions.Exceptions;
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Services;
 using Itmo.Dev.Asap.Auth.Application.Contracts.Identity.Commands;
 using Itmo.Dev.Asap.Auth.Application.Extensions;
@@ -8,10 +9,15 @@ using Itmo.Dev.Asap.Auth.Application.Handlers.Extensions;
 using Itmo.Dev.Asap.Auth.Identity.Extensions;
 using Itmo.Dev.Asap.Auth.Models;
 using Itmo.Dev.Asap.Auth.Presentation.Grpc.Extensions;
+using Itmo.Dev.Platform.Logging.Extensions;
+using Itmo.Dev.Platform.YandexCloud.Extensions;
 using MediatR;
 using System.Security.Claims;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
+
+await builder.AddYandexCloudConfigurationAsync();
 
 builder.Services
     .AddApplication()
@@ -20,9 +26,11 @@ builder.Services
     .AddGrpcPresentation();
 
 builder.Services.AddControllers();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.AddPlatformSentry();
+builder.Host.AddPlatformSerilog(builder.Configuration);
 
 WebApplication app = builder.Build();
 
@@ -36,6 +44,7 @@ app.UseSwaggerUI();
 
 app.UseCors(o => o.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 app.UseRouting();
+app.UsePlatformSentryTracing(builder.Configuration);
 
 app.UseGrpcPresentation();
 
@@ -71,6 +80,11 @@ static async Task InitAsync(IServiceProvider provider, IConfiguration configurat
         {
             var registerCommand = new CreateAdmin.Command(admin.Username, admin.Password);
             await mediatr.Send(registerCommand);
+        }
+        catch (IdentityOperationNotSucceededException e)
+            when (e.Message.Equals($"Username '{admin.Username}' is already taken.", StringComparison.Ordinal))
+        {
+            // this is fine.
         }
         catch (Exception e)
         {
