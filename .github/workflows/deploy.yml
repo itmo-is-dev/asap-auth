@@ -86,6 +86,10 @@ jobs:
         with:
           push: true
           tags: itmo-is-dev/asap-auth:${{needs.environment-set.outputs.environment-key}}-latest
+          no-cache: true
+          build-args:
+            - GITHUB_USERNAME=${{ secrets.DOCKER_GITHUB_USERNAME }}
+            - GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN  }}
   
 #  deploy:  
 #    needs: environment-set
