@@ -89,6 +89,7 @@ jobs:
       - 
         name: 
         run: |
+          docker stop asap-auth || true && docker rm asap-auth || true
           docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.environment-set.outputs.branch }}
           docker run \
             --name asap-auth \
