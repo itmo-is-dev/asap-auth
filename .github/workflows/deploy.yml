@@ -13,26 +13,6 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-#  upload-docker-image:
-#    name: upload-docker-image
-#    runs-on: ubuntu-latest
-#    permissions:
-#      packages: write
-#    steps:
-#      - uses: actions/checkout@v2
-#      - name: Login to github container registry
-#        run: |
-#          echo $GITHUB_TOKEN | docker login ghcr.io -u $DOCKER_GITHUB_USERNAME --password-stdin
-#      - name: Build docker image
-#        run: |
-#          docker build \
-#          -t asap-auth \
-#          --build-arg GITHUB_USERNAME=$DOCKER_GITHUB_USERNAME \
-#          --build-arg GITHUB_TOKEN=$GITHUB_TOKEN \
-#          --no-cache \
-#          --progess plain \
-#          .
-
   environment-set:
     outputs:
       branch: ${{ steps.extract-branch.outputs.branch }}
@@ -88,7 +68,7 @@ jobs:
           tags: itmo-is-dev/asap-auth:${{needs.environment-set.outputs.environment-key}}-latest
           no-cache: true
           build-args: |
-            GITHUB_USERNAME=${{ secrets.DOCKER_GITHUB_USERNAME }}
+            GITHUB_USERNAME=${{ github.actor }}
             GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN  }}
   
 #  deploy:  
