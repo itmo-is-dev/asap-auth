@@ -13,7 +13,7 @@ RUN dotnet restore "src/Itmo.Dev.Asap.Auth/Itmo.Dev.Asap.Auth.csproj"
 
 FROM build AS publish
 WORKDIR "/source/src/Itmo.Dev.Asap.Auth"
-RUN dotnet publish "Itmo.Dev.Asap.Auth.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Itmo.Dev.Asap.Auth.csproj" -c Release -o /app/publish /p:UseAppHost=false --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0.5 AS final
 WORKDIR /app

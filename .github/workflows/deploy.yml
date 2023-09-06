@@ -64,8 +64,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v4
         with:
+          context: .
           push: true
-          tags: itmo-is-dev/asap-auth:${{needs.environment-set.outputs.environment-key}}-latest
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
           no-cache: true
           build-args: |
             GITHUB_USERNAME=${{ github.actor }}
