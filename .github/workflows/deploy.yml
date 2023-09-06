@@ -97,7 +97,6 @@ jobs:
             -e Platform__YandexCloud__LockBox__SecretId=${{ secrets.YANDEX_SECRET_ID }} \
             -d \
             -t \
-            --rm \
             -v /var/log/Serilogs/asap-auth:/app/Serilogs/asap-auth \
             --network asap-kafka_asap-kafka \
             --restart=unless-stopped \
