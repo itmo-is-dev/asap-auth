@@ -3,6 +3,7 @@ using Itmo.Dev.Asap.Auth.Application.Abstractions.Exceptions;
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Services;
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Services.Results;
 using MediatR;
+using System.Diagnostics;
 using static Itmo.Dev.Asap.Auth.Application.Contracts.Identity.Commands.CreateUserAccount;
 
 namespace Itmo.Dev.Asap.Auth.Application.Handlers.Identity;
@@ -36,7 +37,7 @@ internal class CreateUserAccountHandler : IRequestHandler<Command, Response>
         {
             CreateUserResult.Success s => new Response.Success(s.User),
             CreateUserResult.AlreadyExists => new Response.AlreadyExists(),
-            _ => throw new ArgumentOutOfRangeException(),
+            _ => throw new UnreachableException("CreateUserResult DU has unhandled case"),
         };
     }
 }
