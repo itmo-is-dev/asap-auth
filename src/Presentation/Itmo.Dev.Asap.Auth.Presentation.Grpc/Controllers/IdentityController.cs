@@ -46,7 +46,10 @@ public class IdentityController : IdentityService.IdentityServiceBase
     public override async Task<Empty> CreateUserAccount(CreateUserAccountRequest request, ServerCallContext context)
     {
         CreateUserAccount.Command command = request.MapTo();
-        await _mediator.Send(command, context.CancellationToken);
+        CreateUserAccount.Response response = await _mediator.Send(command, context.CancellationToken);
+
+        if (response is CreateUserAccount.Response.AlreadyExists)
+            throw new RpcException(new Status(StatusCode.AlreadyExists, "Selected user already has an account"));
 
         return new Empty();
     }
