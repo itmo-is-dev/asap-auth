@@ -37,6 +37,7 @@ internal class CreateUserAccountHandler : IRequestHandler<Command, Response>
         {
             CreateUserResult.Success s => new Response.Success(s.User),
             CreateUserResult.AlreadyExists => new Response.AlreadyExists(),
+            CreateUserResult.Failure f => new Response.Failure(f.Description),
             _ => throw new UnreachableException("CreateUserResult DU has unhandled case"),
         };
     }

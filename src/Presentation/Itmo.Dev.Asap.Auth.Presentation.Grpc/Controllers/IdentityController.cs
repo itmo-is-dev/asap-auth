@@ -48,10 +48,18 @@ public class IdentityController : IdentityService.IdentityServiceBase
         CreateUserAccount.Command command = request.MapTo();
         CreateUserAccount.Response response = await _mediator.Send(command, context.CancellationToken);
 
-        if (response is CreateUserAccount.Response.AlreadyExists)
-            throw new RpcException(new Status(StatusCode.AlreadyExists, "Selected user already has an account"));
+        return response switch
+        {
+            Application.Contracts.Identity.Commands.CreateUserAccount.Response.Success => new Empty(),
 
-        return new Empty();
+            Application.Contracts.Identity.Commands.CreateUserAccount.Response.AlreadyExists
+                => throw new RpcException(new Status(StatusCode.AlreadyExists, "Selected user already has an account")),
+
+            CreateUserAccount.Response.Failure f
+                => throw new RpcException(new Status(StatusCode.InvalidArgument, f.Description)),
+
+            _ => throw new RpcException(new Status(StatusCode.Internal, "Failed create user account")),
+        };
     }
 
     public override async Task<UpdateUsernameResponse> UpdateUsername(

@@ -9,4 +9,6 @@ public abstract record CreateUserResult
     public sealed record Success(IdentityUserDto User) : CreateUserResult;
 
     public sealed record AlreadyExists : CreateUserResult;
+
+    public sealed record Failure(string Description) : CreateUserResult;
 }

@@ -12,5 +12,7 @@ internal static class CreateUserAccount
         public sealed record Success(IdentityUserDto User) : Response;
 
         public sealed record AlreadyExists : Response;
+
+        public sealed record Failure(string Description) : Response;
     }
 }

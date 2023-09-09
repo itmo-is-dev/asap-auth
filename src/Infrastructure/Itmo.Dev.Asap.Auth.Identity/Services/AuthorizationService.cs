@@ -78,7 +78,11 @@ internal class AuthorizationService : IAuthorizationService
         {
             IdentityResult result = await _userManager.CreateAsync(user, password);
 
-            result.EnsureSucceeded();
+            if (result.Succeeded is false)
+            {
+                string description = string.Join(' ', result.Errors.Select(x => x.Description));
+                return new CreateUserResult.Failure(description);
+            }
 
             await _userManager.AddToRoleAsync(user, roleName);
 
