@@ -25,7 +25,9 @@ public class IdentityController : IdentityService.IdentityServiceBase
         return response.MapFrom();
     }
 
-    public override async Task<ValidateTokenResponse> ValidateToken(ValidateTokenRequest request, ServerCallContext context)
+    public override async Task<ValidateTokenResponse> ValidateToken(
+        ValidateTokenRequest request,
+        ServerCallContext context)
     {
         ValidateToken.Query query = request.MapTo();
         ValidateToken.Response response = await _mediator.Send(query, context.CancellationToken);
@@ -85,5 +87,15 @@ public class IdentityController : IdentityService.IdentityServiceBase
         FindUsers.Response response = await _mediator.Send(query, context.CancellationToken);
 
         return response.MapFrom();
+    }
+
+    public override async Task<GetRoleNamesResponse> GetRoleNames(
+        GetRoleNamesRequest request,
+        ServerCallContext context)
+    {
+        var query = new GetRoleNames.Query();
+        GetRoleNames.Response response = await _mediator.Send(query, context.CancellationToken);
+
+        return new GetRoleNamesResponse { RoleName = { response.Roles } };
     }
 }
