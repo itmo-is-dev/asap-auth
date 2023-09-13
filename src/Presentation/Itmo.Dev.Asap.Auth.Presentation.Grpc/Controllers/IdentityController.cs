@@ -25,7 +25,9 @@ public class IdentityController : IdentityService.IdentityServiceBase
         return response.MapFrom();
     }
 
-    public override async Task<ValidateTokenResponse> ValidateToken(ValidateTokenRequest request, ServerCallContext context)
+    public override async Task<ValidateTokenResponse> ValidateToken(
+        ValidateTokenRequest request,
+        ServerCallContext context)
     {
         ValidateToken.Query query = request.MapTo();
         ValidateToken.Response response = await _mediator.Send(query, context.CancellationToken);
@@ -44,9 +46,20 @@ public class IdentityController : IdentityService.IdentityServiceBase
     public override async Task<Empty> CreateUserAccount(CreateUserAccountRequest request, ServerCallContext context)
     {
         CreateUserAccount.Command command = request.MapTo();
-        await _mediator.Send(command, context.CancellationToken);
+        CreateUserAccount.Response response = await _mediator.Send(command, context.CancellationToken);
 
-        return new Empty();
+        return response switch
+        {
+            Application.Contracts.Identity.Commands.CreateUserAccount.Response.Success => new Empty(),
+
+            Application.Contracts.Identity.Commands.CreateUserAccount.Response.AlreadyExists
+                => throw new RpcException(new Status(StatusCode.AlreadyExists, "Selected user already has an account")),
+
+            CreateUserAccount.Response.Failure f
+                => throw new RpcException(new Status(StatusCode.InvalidArgument, f.Description)),
+
+            _ => throw new RpcException(new Status(StatusCode.Internal, "Failed create user account")),
+        };
     }
 
     public override async Task<UpdateUsernameResponse> UpdateUsername(
@@ -85,5 +98,15 @@ public class IdentityController : IdentityService.IdentityServiceBase
         FindUsers.Response response = await _mediator.Send(query, context.CancellationToken);
 
         return response.MapFrom();
+    }
+
+    public override async Task<GetRoleNamesResponse> GetRoleNames(
+        GetRoleNamesRequest request,
+        ServerCallContext context)
+    {
+        var query = new GetRoleNames.Query();
+        GetRoleNames.Response response = await _mediator.Send(query, context.CancellationToken);
+
+        return new GetRoleNamesResponse { RoleName = { response.Roles } };
     }
 }

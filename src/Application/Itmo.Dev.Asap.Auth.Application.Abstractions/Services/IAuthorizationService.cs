@@ -1,3 +1,4 @@
+using Itmo.Dev.Asap.Auth.Application.Abstractions.Services.Results;
 using Itmo.Dev.Asap.Auth.Application.Dto.Users;
 using System.Security.Claims;
 
@@ -11,7 +12,7 @@ public interface IAuthorizationService
 
     Task CreateRoleIfNotExistsAsync(string roleName, CancellationToken cancellationToken = default);
 
-    Task<IdentityUserDto> CreateUserAsync(
+    Task<CreateUserResult> CreateUserAsync(
         Guid userId,
         string username,
         string password,

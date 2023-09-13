@@ -1,5 +1,6 @@
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Exceptions;
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Services;
+using Itmo.Dev.Asap.Auth.Application.Abstractions.Services.Results;
 using Itmo.Dev.Asap.Auth.Application.Dto.Users;
 using Itmo.Dev.Asap.Auth.Identity.Entities;
 using Itmo.Dev.Asap.Auth.Identity.Extensions;
@@ -59,7 +60,7 @@ internal class AuthorizationService : IAuthorizationService
         await _roleManager.CreateIfNotExistsAsync(roleName, cancellationToken);
     }
 
-    public async Task<IdentityUserDto> CreateUserAsync(
+    public async Task<CreateUserResult> CreateUserAsync(
         Guid userId,
         string username,
         string password,
@@ -73,13 +74,27 @@ internal class AuthorizationService : IAuthorizationService
             SecurityStamp = Guid.NewGuid().ToString(),
         };
 
-        IdentityResult result = await _userManager.CreateAsync(user, password);
+        try
+        {
+            IdentityResult result = await _userManager.CreateAsync(user, password);
 
-        result.EnsureSucceeded();
+            if (result.Succeeded is false)
+            {
+                string description = string.Join(' ', result.Errors.Select(x => x.Description));
+                return new CreateUserResult.Failure(description);
+            }
 
-        await _userManager.AddToRoleAsync(user, roleName);
+            await _userManager.AddToRoleAsync(user, roleName);
 
-        return user.ToDto();
+            return new CreateUserResult.Success(user.ToDto());
+        }
+        catch (InvalidOperationException e) when
+            (e.Message.Contains(
+                "cannot be tracked because another instance with the same key",
+                StringComparison.OrdinalIgnoreCase))
+        {
+            return new CreateUserResult.AlreadyExists();
+        }
     }
 
     public async Task<IdentityUserDto> GetUserByIdAsync(Guid userId, CancellationToken cancellationToken = default)
