@@ -1,8 +1,11 @@
 ﻿using Itmo.Dev.Asap.Auth.Application.Abstractions.Exceptions;
 using Itmo.Dev.Asap.Auth.Application.Abstractions.Services;
+using Itmo.Dev.Asap.Auth.Application.Abstractions.Services.Results;
 using Itmo.Dev.Asap.Auth.Application.Contracts.Identity.Commands;
 using Itmo.Dev.Asap.Auth.Application.CurrentUsers;
+using Itmo.Dev.Asap.Auth.Application.Dto.Users;
 using Itmo.Dev.Asap.Auth.Application.Handlers.Identity;
+using Moq;
 using Xunit;
 
 namespace Itmo.Dev.Asap.Auth.Tests.Identity;
@@ -21,6 +24,16 @@ public class CreateUserAccountTest : AuthTestBase
         var admin = new AdminUser(Guid.Empty);
 
         var command = new CreateUserAccount.Command(Faker.Random.Guid(), username, password, roleName);
+
+        AuthorizationServiceMock
+            .Setup(x => x.CreateUserAsync(
+                It.IsAny<Guid>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<string>(),
+                It.IsAny<CancellationToken>()))
+            .ReturnsAsync(() => new CreateUserResult.Success(
+                new IdentityUserDto(Faker.Random.Guid(), Faker.Internet.UserName())));
 
         var handler = new CreateUserAccountHandler(
             admin,
@@ -62,6 +75,19 @@ public class CreateUserAccountTest : AuthTestBase
         var admin = new ModeratorUser(Guid.Empty);
 
         var command = new CreateUserAccount.Command(Faker.Random.Guid(), username, password, roleName);
+
+        if (throwExpected is false)
+        {
+            AuthorizationServiceMock
+                .Setup(x => x.CreateUserAsync(
+                    It.IsAny<Guid>(),
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    It.IsAny<string>(),
+                    It.IsAny<CancellationToken>()))
+                .ReturnsAsync(() => new CreateUserResult.Success(
+                    new IdentityUserDto(Faker.Random.Guid(), Faker.Internet.UserName())));
+        }
 
         var handler = new CreateUserAccountHandler(
             admin,
