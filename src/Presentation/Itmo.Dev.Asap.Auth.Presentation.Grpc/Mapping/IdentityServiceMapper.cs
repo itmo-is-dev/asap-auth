@@ -25,7 +25,7 @@ internal static partial class IdentityServiceMapper
 
     public static partial FindUsers.Query MapTo(this FindUsersRequest request);
 
-    public static partial LoginResponse MapFrom(this Login.Response response);
+    public static partial LoginResponse MapFrom(this Login.Response.Success response);
 
     [MapProperty(nameof(ValidateToken.Response.IsValid), nameof(ValidateTokenResponse.IsTokenValid))]
     public static partial ValidateTokenResponse MapFrom(this ValidateToken.Response response);

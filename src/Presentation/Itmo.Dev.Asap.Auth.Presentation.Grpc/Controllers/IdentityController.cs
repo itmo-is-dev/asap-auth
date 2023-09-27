@@ -22,7 +22,18 @@ public class IdentityController : IdentityService.IdentityServiceBase
         Login.Query query = request.MapTo();
         Login.Response response = await _mediator.Send(query, context.CancellationToken);
 
-        return response.MapFrom();
+        return response switch
+        {
+            Login.Response.Success success => success.MapFrom(),
+
+            Application.Contracts.Identity.Queries.Login.Response.InvalidUsername
+                => throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid username")),
+
+            Application.Contracts.Identity.Queries.Login.Response.InvalidPassword
+                => throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid password")),
+
+            _ => throw new RpcException(new Status(StatusCode.Internal, "Operation finished with unexpected result")),
+        };
     }
 
     public override async Task<ValidateTokenResponse> ValidateToken(

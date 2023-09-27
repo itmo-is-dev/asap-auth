@@ -6,5 +6,14 @@ internal static class Login
 {
     public record Query(string Username, string Password) : IRequest<Response>;
 
-    public record Response(string Token);
+    public abstract record Response
+    {
+        private Response() { }
+
+        public sealed record Success(string Token) : Response;
+
+        public sealed record InvalidUsername : Response;
+
+        public sealed record InvalidPassword : Response;
+    }
 }
