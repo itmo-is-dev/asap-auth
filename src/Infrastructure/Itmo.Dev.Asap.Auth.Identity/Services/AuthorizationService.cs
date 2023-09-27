@@ -128,6 +128,13 @@ internal class AuthorizationService : IAuthorizationService
         return user.ToDto();
     }
 
+    public async Task<IdentityUserDto?> FindUserByNameAsync(string username, CancellationToken cancellationToken)
+    {
+        AsapIdentityUser? user = await _userManager.FindByNameAsync(username);
+
+        return user?.ToDto();
+    }
+
     public async Task UpdateUserNameAsync(
         Guid userId,
         string newUsername,
