@@ -26,10 +26,10 @@ public class IdentityController : IdentityService.IdentityServiceBase
         {
             Login.Response.Success success => success.MapFrom(),
 
-            Login.Response.InvalidUsername _
+            Application.Contracts.Identity.Queries.Login.Response.InvalidUsername
                 => throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid username")),
 
-            Login.Response.InvalidPassword _
+            Application.Contracts.Identity.Queries.Login.Response.InvalidPassword
                 => throw new RpcException(new Status(StatusCode.InvalidArgument, "Invalid password")),
 
             _ => throw new RpcException(new Status(StatusCode.Internal, "Operation finished with unexpected result")),
